@@ -3,7 +3,7 @@
 |-------------------------|--------------|---------|
 | Abdulkerim Neja         | UGR/1591/15  | 4       |
 | Biruk Ayalew            | UGR/6137/15  | 4       |
-| Bilen Redwan            | UGR/5921/15  | 4       |
+| Belean Redwan           | UGR/5921/15  | 4       |
 | Firaol Ayana            | UGR/5016/15  | 3       |
 | Lamesgin Desalegn       | UGR/0690/15  | 3       |
 
