@@ -7,31 +7,38 @@
 | Firaol Ayana            | UGR/5016/15  | 3       |
 | Lamesgin Desalegn       | UGR/0690/15  | 3       |
 
+# MedSync - Patient Care Management System
 
-# Budget Planner App
+## Project Overview
+MedSync is a comprehensive Patient Care Management System designed to streamline patient care, improve communication between healthcare providers and patients, and enhance overall hospital workflow. The system includes role-based access control for different users, ensuring secure and efficient management of medical data.
 
-## Description
-The **Budget Planner App** will be a mobile application designed to help users manage their finances effectively. It will allow users to track their income and expenses, set budgets, and visualize their spending habits. It will include **authentication and authorization** to ensure secure access to user data. The app will also support **CRUD operations** for managing transactions and budgets, along with **widget, unit, and integration testing** to ensure reliability.
+## Features
 
-## Planned Features
-### Authentication and Authorization
-- User registration and login using email and password.  
-- Secure password hashing and storage.  
-- Access restricted to authenticated users.  
+### Admin
+- Manage doctors (Add, Edit, Delete)
+- Manage triage staff (Add, Edit, Delete)
+- Manage patients (View, Delete)
 
-### Business Feature 1: Income and Expense Management (CRUD)
-- **Create**: Add income or expenses with details (amount, category, date, description).  
-- **Read**: View a list of all transactions.  
-- **Update**: Edit existing transactions.  
-- **Delete**: Remove transactions.  
+### Triage
+- Accept or decline patient bookings
+- Assign patients to doctors
+- View and manage patient appointments
 
-### Business Feature 2: Budget Management (CRUD)
-- **Create**: Set a monthly budget for specific categories.  
-- **Read**: View current budgets and progress.  
-- **Update**: Modify budgets.  
-- **Delete**: Remove budgets.  
+### Doctor
+- View assigned patients
+- Add, edit, delete patient medical history
+- Prescribe medications
+- Communicate with patients via chat
 
-### Additional Features
-- Dashboard Overview (Income, Expenses, Savings)  
-- Visual Reports (Pie Charts, Bar Graphs)  
-- Dark/Light Mode  
+### Patient
+- Register and book appointments
+- View assigned doctor
+- View medical history and prescriptions
+- Communicate with doctor via chat
+
+### Authentication & Authorization
+- Role-based access control (Admin, Doctor, Triage, Patient)
+- Secure login and registration
+
+
+
