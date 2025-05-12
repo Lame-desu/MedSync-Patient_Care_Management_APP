@@ -62,15 +62,11 @@ exports.getAvailableDoctors = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Process triage and assign doctor
-// @route   POST /api/triage/process/:bookingId
-// @access  Private/Triage
 exports.processTriage = asyncHandler(async (req, res) => {
   const { bookingId } = req.params;
   const { doctorId, vitals, priority, notes } = req.body;
   const triageId = req.user.id;
 
-  // Validate booking exists and is pending
   const booking = await Booking.findById(bookingId);
   if (!booking || booking.status !== 'pending') {
     return res.status(400).json({
