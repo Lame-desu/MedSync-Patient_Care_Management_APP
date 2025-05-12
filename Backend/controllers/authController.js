@@ -16,7 +16,7 @@ exports.registerPatient = async (req, res) => {
 
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 12);
-
+    
     // Create patient
     const patient = new User({
       name,
