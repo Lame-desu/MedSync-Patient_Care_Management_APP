@@ -31,7 +31,7 @@ router.get(
   adminController.getDashboardStats
 );
 
-// Get appointments by status
+
 router.get(
   '/appointments',
   authenticate,
@@ -39,7 +39,7 @@ router.get(
   adminController.getAppointmentsByStatus
 );
 
-// Get patients with filtering
+
 router.get(
   '/patients',
   authenticate,
