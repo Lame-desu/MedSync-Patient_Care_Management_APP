@@ -151,59 +151,6 @@ exports.createBooking = asyncHandler(async (req, res) => {
     data: booking
   });
 });
-// exports.createBooking = asyncHandler(async (req, res) => {
-//   const patientId = req.user.id;
-//   const { priority, preferredDate, preferredTime, lookingFor } = req.body;
-
-//   if (!lookingFor) {
-//     return res.status(400).json({
-//       success: false,
-//       message: 'Please specify which type of doctor you are looking for'
-//     });
-//   }
-
-//   const allowedSpecialties = [
-//     'dermatologist',
-//     'pathologist',
-//     'cardiologist',
-//     'neurologist',
-//     'pediatrician',
-//     'psychiatrist',
-//     'general physician',
-//     'dentist',
-   
-//   ];
-
-//   if (!allowedSpecialties.includes(lookingFor)) {
-//     return res.status(400).json({
-//       success: false,
-//       message: 'Invalid specialty. Please choose from the allowed specialties',
-//       allowedSpecialties
-//     });
-//   }
-
-//   const booking = new Booking({
-//     patientId,
-//     patientName,
-//     lookingFor,
-//     priority: priority || 'medium',
-//     preferredDate,
-//     preferredTime,
-//     status: 'pending'
-//   });
-
-//   await booking.save();
-//   await booking.populate('patientId', 'name email');
-
-//   res.status(201).json({
-//     success: true,
-//     data: booking
-//   });
-// });
-
-// @desc    Cancel booking
-// @route   PUT /api/patient/bookings/:id/cancel
-// @access  Private/Patient
 exports.cancelBooking = asyncHandler(async (req, res) => {
   const bookingId = req.params.id;
   const patientId = req.user.id;
@@ -225,9 +172,6 @@ exports.cancelBooking = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Get patient appointments
-// @route   GET /api/patient/appointments
-// @access  Private/Patient
 exports.getPatientAppointments = asyncHandler(async (req, res) => {
   const patientId = req.user.id;
   const { status, upcoming } = req.query;
