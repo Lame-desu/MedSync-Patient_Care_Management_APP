@@ -81,7 +81,6 @@ exports.getStaffByCategory = asyncHandler(async (req, res) => {
   const { role } = req.params;
   const { page = 1, limit = 10 } = req.query;
 
-  // Validate role
   if (!['admin', 'doctor', 'triage'].includes(role)) {
     return res.status(400).json({ message: 'Invalid staff category' });
   }
@@ -95,7 +94,7 @@ exports.getStaffByCategory = asyncHandler(async (req, res) => {
     .skip(startIndex)
     .limit(limit);
 
-  // Pagination result
+
   const pagination = {};
   if (endIndex < total) {
     pagination.next = {
@@ -119,9 +118,7 @@ exports.getStaffByCategory = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Get dashboard statistics
-// @route   GET /api/admin/dashboard-stats
-// @access  Private/Admin
+
 exports.getDashboardStats = asyncHandler(async (req, res) => {
   const [
     patients,
@@ -155,13 +152,11 @@ exports.getDashboardStats = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Get appointments by status
-// @route   GET /api/admin/appointments
-// @access  Private/Admin
+
 exports.getAppointmentsByStatus = asyncHandler(async (req, res) => {
   const { status, page = 1, limit = 10 } = req.query;
 
-  // Validate status
+
   const validStatuses = ['scheduled', 'completed', 'cancelled', 'no-show'];
   if (status && !validStatuses.includes(status)) {
     return res.status(400).json({ message: 'Invalid appointment status' });
@@ -180,7 +175,7 @@ exports.getAppointmentsByStatus = asyncHandler(async (req, res) => {
     .skip(startIndex)
     .limit(limit);
 
-  // Pagination result
+  
   const pagination = {};
   if (endIndex < total) {
     pagination.next = {
@@ -204,16 +199,14 @@ exports.getAppointmentsByStatus = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Get patients with filtering
-// @route   GET /api/admin/patients
-// @access  Private/Admin
+
 exports.getPatients = asyncHandler(async (req, res) => {
   const { page = 1, limit = 10, search } = req.query;
 
   const startIndex = (page - 1) * limit;
   const endIndex = page * limit;
 
-  // Build query
+
   const query = { role: 'patient' };
   if (search) {
     query.$or = [
@@ -228,7 +221,7 @@ exports.getPatients = asyncHandler(async (req, res) => {
     .skip(startIndex)
     .limit(limit);
 
-  // Pagination result
+ 
   const pagination = {};
   if (endIndex < total) {
     pagination.next = {
