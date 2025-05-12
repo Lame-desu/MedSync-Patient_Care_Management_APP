@@ -19,7 +19,6 @@ exports.getUnassignedBookings = asyncHandler(async (req, res) => {
     .limit(limit);
  
 
-  // Pagination result
   const pagination = {};
   if (endIndex <= total) {
     pagination.next = {
@@ -158,8 +157,6 @@ exports.updateMedicalHistory = asyncHandler(async (req, res) => {
 
 
 
-
-// controllers/triageController.js
 
 exports.getPatients = asyncHandler(async (req, res) => {
   const { department } = req.query;
