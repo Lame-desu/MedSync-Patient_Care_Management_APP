@@ -9,7 +9,7 @@ exports.authenticate = (req, res, next) => {
 
   const decoded = verifyToken(token);
   if (!decoded) {
-    return res.status(401).json({ message: 'Token is not valid' });
+    return res.status(401).json({ message: 'Token is not valid, Provide correct Token' });
   }
 
   req.user = decoded;
