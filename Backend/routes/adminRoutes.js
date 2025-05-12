@@ -7,7 +7,7 @@ const { authenticate, authorize } = require('../middlewares/authMiddlewares');
 
 router.post('/register', adminController.registerAdmin);
 
-// Register new staff (admin, doctor, triage)
+
 router.post(
   '/staff',
   authenticate,
@@ -15,7 +15,7 @@ router.post(
   adminController.registerStaff
 );
 
-// Get staff by category
+
 router.get(
   '/staff/:role',
   authenticate,
