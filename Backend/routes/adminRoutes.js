@@ -23,7 +23,7 @@ router.get(
   adminController.getStaffByCategory
 );
 
-// Get dashboard statistics
+
 router.get(
   '/dashboard-stats',
   authenticate,
