@@ -3,9 +3,7 @@ const Appointment = require('../models/appointmentModel');
 const asyncHandler = require('express-async-handler');
 const bcrypt = require('bcryptjs');
 
-// @desc    Register new staff (admin, doctor, triage)
-// @route   POST /api/admin/staff
-// @access  Private/Admin
+
 exports.registerStaff = asyncHandler(async (req, res) => {
   const { name, email, password, role, ...otherData } = req.body;
 
