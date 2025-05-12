@@ -119,7 +119,6 @@ exports.getPatientMedicalRecords = asyncHandler(async (req, res) => {
   const { patientId } = req.params;
   const doctorId = req.user.id;
 
-  // Verify the doctor has/had appointments with this patient
   const hasAppointments = await Appointment.exists({
     patientId,
     doctorId,
@@ -133,7 +132,6 @@ exports.getPatientMedicalRecords = asyncHandler(async (req, res) => {
     });
   }
 
-  // Retrieve all records for this patient and doctor
   const medicalRecords = await MedicalHistory.find({ patientId, doctorId })
     .populate('doctorId', 'name specialization')
     .populate('patientId', 'name dateOfBirth gender');
@@ -146,9 +144,6 @@ exports.getPatientMedicalRecords = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Get specific medical record details
-// @route   GET /api/doctor/medical-records/:recordId
-// @access  Private/Doctor
 exports.getMedicalRecordDetails = asyncHandler(async (req, res) => {
   const { recordId } = req.params;
   const doctorId = req.user.id;
@@ -173,18 +168,14 @@ exports.getMedicalRecordDetails = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Create new medical record for patient
-// @route   POST /api/doctor/medical-records
-// @access  Private/Doctor
 exports.createMedicalRecord = asyncHandler(async (req, res) => {
   const { patientId, treatment, notes,diagnosis } = req.body;
   const doctorId = req.user.id;
 console.log('Creating medical record:', req.body);
-  // Handle the typo in the schema: use "diagonosis" instead of "diagnosis"
   const medicalHistory = await MedicalHistory.create({
     patientId,
     doctorId,
-    diagnosis,  // Matching the typo in the schema
+    diagnosis,  
     treatment,
     notes,
     lastUpdated: new Date()
@@ -198,9 +189,6 @@ console.log('Creating medical record:', req.body);
 });
 
 
-// @desc    Update medical record
-// @route   PUT /api/doctor/medical-records/:recordId
-// @access  Private/Doctor
 exports.updateMedicalRecord = asyncHandler(async (req, res) => {
   const { recordId } = req.params;
   const { diagnosis, treatment, notes } = req.body;
@@ -216,7 +204,6 @@ exports.updateMedicalRecord = asyncHandler(async (req, res) => {
     });
   }
 
-  // Match the model's field "diagonosis" (with the typo)
   medicalHistory.diagonosis = diagnosis || medicalHistory.diagonosis;
   medicalHistory.treatment = treatment || medicalHistory.treatment;
   medicalHistory.notes = notes || medicalHistory.notes;
@@ -230,9 +217,6 @@ exports.updateMedicalRecord = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Delete medical record
-// @route   DELETE /api/doctor/medical-records/:recordId
-// @access  Private/Doctor
 exports.deleteMedicalRecord = asyncHandler(async (req, res) => {
   const { recordId } = req.params;
   const doctorId = req.user.id;
