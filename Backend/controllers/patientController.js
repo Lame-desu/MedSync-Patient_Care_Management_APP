@@ -69,7 +69,6 @@ exports.createBooking = asyncHandler(async (req, res) => {
   const patientId = req.user.id;
   const { priority, preferredDate, preferredTime, lookingFor, notes, patientName } = req.body;
 
-  // Input validation
   if (!lookingFor) {
     return res.status(400).json({
       success: false,
@@ -96,7 +95,6 @@ exports.createBooking = asyncHandler(async (req, res) => {
     });
   }
 
-  // Validate date and time
   if (!preferredDate || !preferredTime) {
     return res.status(400).json({
       success: false,
@@ -119,7 +117,6 @@ exports.createBooking = asyncHandler(async (req, res) => {
     });
   }
 
-  // Get patient details if name not provided
   let finalPatientName = patientName;
   if (!finalPatientName) {
     const patient = await User.findById(patientId).select('name');
@@ -195,9 +192,6 @@ exports.getPatientAppointments = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Get patient dashboard data
-// @route   GET /api/patient/dashboard
-// @access  Private/Patient
 exports.getPatientDashboard = asyncHandler(async (req, res) => {
   const patientId = req.user.id;
 
@@ -242,13 +236,8 @@ exports.getPatientDashboard = asyncHandler(async (req, res) => {
 });
 
 
-// @desc    Get all medical records for a specific patient
-// @route   GET /api/doctor/patients/:patientId/medical-records
-// @access  Private/Doctor
 exports.getPatientMedicalRecords = asyncHandler(async (req, res) => {
   const patientId = req.user.id
-
-  // Verify the doctor has/had appointments with this patient
   const hasAppointments = await Appointment.exists({
     patientId,
     doctorId,
@@ -262,7 +251,6 @@ exports.getPatientMedicalRecords = asyncHandler(async (req, res) => {
     });
   }
 
-  // Retrieve all records for this patient and doctor
   const medicalRecords = await MedicalHistory.find({ patientId, doctorId })
     .populate('doctorId', 'name specialization')
     .populate('patientId', 'name dateOfBirth gender');
