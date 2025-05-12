@@ -5,9 +5,6 @@ const Booking = require('../models/bookingModel');
 const User = require('../models/userModel');
 const asyncHandler = require('express-async-handler');
 
-// @desc    Get all unassigned bookings (pending triage)
-// @route   GET /api/triage/bookings
-// @access  Private/Triage
 exports.getUnassignedBookings = asyncHandler(async (req, res) => {
   const { page = 1, limit = 10 } = req.query;
   const startIndex = (page - 1) * limit;
