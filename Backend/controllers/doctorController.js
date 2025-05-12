@@ -96,18 +96,13 @@ exports.updateAppointmentStatus = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Get all patients assigned to a doctor
-// @route   GET /api/doctor/patients
-// @access  Private/Doctor
 exports.getDoctorPatients = asyncHandler(async (req, res) => {
   const doctorId = req.user.id;
 
-  // Find all appointments for the doctor and populate patient details
   const appointments = await Appointment.find({ doctorId })
     .populate('patientId', 'name email dateOfBirth gender bloodGroup')
     .sort({ date: 1 });
 
-  // Extract unique patients from appointments
   const patients = appointments.map(appointment => ({
     ...appointment.patientId.toObject(),
     id: appointment.patientId._id
@@ -120,9 +115,6 @@ exports.getDoctorPatients = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Get all medical records for a specific patient
-// @route   GET /api/doctor/patients/:patientId/medical-records
-// @access  Private/Doctor
 exports.getPatientMedicalRecords = asyncHandler(async (req, res) => {
   const { patientId } = req.params;
   const doctorId = req.user.id;
