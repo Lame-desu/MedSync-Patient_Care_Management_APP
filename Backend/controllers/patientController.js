@@ -6,9 +6,6 @@ const Booking = require('../models/bookingModel');
 const User = require('../models/userModel');
 const asyncHandler = require('express-async-handler');
 
-// @desc    Get all doctors assigned to patient
-// @route   GET /api/patient/doctors
-// @access  Private/Patient
 exports.getPatientDoctors = asyncHandler(async (req, res) => {
   const patientId = req.user.id;
 
@@ -31,9 +28,6 @@ exports.getPatientDoctors = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Get patient's complete medical history
-// @route   GET /api/patient/medical-history
-// @access  Private/Patient
 exports.getPatientMedicalHistory = asyncHandler(async (req, res) => {
   const patientId = req.user.id;
 
@@ -54,13 +48,6 @@ exports.getPatientMedicalHistory = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Get all patient prescriptions
-// @route   GET /api/patient/prescriptions
-// @access  Private/Patient
-
-// @desc    Get patient bookings
-// @route   GET /api/patient/bookings
-// @access  Private/Patient
 exports.getPatientBookings = asyncHandler(async (req, res) => {
   const patientId = req.user.id;
   const { status } = req.query;
@@ -78,12 +65,6 @@ exports.getPatientBookings = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Create new booking
-// @route   POST /api/patient/bookings
-// @access  Private/Patient
-// @desc    Create new booking
-// @route   POST /api/patient/bookings
-// @access  Private/Patient
 exports.createBooking = asyncHandler(async (req, res) => {
   const patientId = req.user.id;
   const { priority, preferredDate, preferredTime, lookingFor, notes, patientName } = req.body;
