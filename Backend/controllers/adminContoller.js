@@ -7,12 +7,12 @@ const bcrypt = require('bcryptjs');
 exports.registerStaff = asyncHandler(async (req, res) => {
   const { name, email, password, role, ...otherData } = req.body;
 
-  // Validate role
+  
   if (!['admin', 'doctor', 'triage'].includes(role)) {
     return res.status(400).json({ message: 'Invalid staff role' });
   }
 
-  // Check if user exists
+  
   const existingUser = await User.findOne({ email });
   if (existingUser) {
     return res.status(400).json({ message: 'User already exists' });
