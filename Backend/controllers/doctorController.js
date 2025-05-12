@@ -244,9 +244,6 @@ exports.deleteMedicalRecord = asyncHandler(async (req, res) => {
 
 
 
-// @desc    Get all prescriptions for a specific patient
-// @route   GET /api/doctor/patients/:patientId/prescriptions
-// @access  Private/Doctor
 exports.getPatientPrescriptions = asyncHandler(async (req, res) => {
   
   const { patientId } = req.params;
@@ -274,9 +271,6 @@ exports.getPatientPrescriptions = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Get specific prescription details
-// @route   GET /api/doctor/prescriptions/:prescriptionId
-// @access  Private/Doctor
 exports.getPrescriptionDetails = asyncHandler(async (req, res) => {
   const { prescriptionId } = req.params;
   const doctorId = req.user.id;
@@ -301,9 +295,6 @@ exports.getPrescriptionDetails = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Create a new prescription
-// @route   POST /api/doctor/prescriptions
-// @access  Private/Doctor
 exports.createPrescription = asyncHandler(async (req, res) => {
   console.log('Creating prescription:', req.body);
   const { patientId,  medications } = req.body;
@@ -322,9 +313,6 @@ exports.createPrescription = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Update a prescription
-// @route   PUT /api/doctor/prescriptions/:prescriptionId
-// @access  Private/Doctor
 exports.updatePrescription = asyncHandler(async (req, res) => {
   const { prescriptionId } = req.params;
   const { medications } = req.body;
@@ -351,9 +339,6 @@ exports.updatePrescription = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Delete a prescription
-// @route   DELETE /api/doctor/prescriptions/:prescriptionId
-// @access  Private/Doctor
 exports.deletePrescription = asyncHandler(async (req, res) => {
   const { prescriptionId } = req.params;
 
