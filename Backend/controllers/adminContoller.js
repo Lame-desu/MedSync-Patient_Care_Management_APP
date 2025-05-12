@@ -18,10 +18,10 @@ exports.registerStaff = asyncHandler(async (req, res) => {
     return res.status(400).json({ message: 'User already exists' });
   }
 
-  // Hash password
+  
   const hashedPassword = await bcrypt.hash(password, 12);
 
-  // Create staff user
+  
   const staff = new User({
     name,
     email,
@@ -32,7 +32,7 @@ exports.registerStaff = asyncHandler(async (req, res) => {
 
   await staff.save();
 
-  // Return user data without password
+  
   const userData = staff.toObject();
   delete userData.password;
 
@@ -76,9 +76,7 @@ exports.registerAdmin = asyncHandler(async (req, res) => {
   }
 });  
 
-// @desc    Get all staff by category
-// @route   GET /api/admin/staff/:role
-// @access  Private/Admin
+
 exports.getStaffByCategory = asyncHandler(async (req, res) => {
   const { role } = req.params;
   const { page = 1, limit = 10 } = req.query;
