@@ -1,0 +1,53 @@
+# Kotlin/Java build output
+/build/
+**/build/
+
+# Gradle
+.gradle/
+local.properties
+
+# IDE files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Android Studio
+.cxx/
+.externalNativeBuild/
+captures/
+*.log
+*.hprof
+
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Kotlin
+.kotlinc/
+*.class
+
+# Packaging
+*.apk
+*.ap_
+*.dex
+*.aar
+*.jar
+*.war
+*.ear
+
+# Generated files
+gen/
+bin/
+out/
+
+# Keystore files (DO NOT push these)
+*.jks
+*.keystore
+
+# Temp files
+*.swp
+*.swo
+*.tmp
