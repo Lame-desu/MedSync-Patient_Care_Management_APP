@@ -43,9 +43,6 @@ exports.getUnassignedBookings = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Get available doctors for assignment
-// @route   GET /api/triage/doctors
-// @access  Private/Triage
 exports.getAvailableDoctors = asyncHandler(async (req, res) => {
   const { department } = req.query;
   
@@ -75,7 +72,6 @@ exports.processTriage = asyncHandler(async (req, res) => {
     });
   }
 
-  // Validate doctor exists
   const doctor = await User.findOne({ _id: doctorId, role: 'doctor' });
   if (!doctor) {
     return res.status(400).json({
@@ -84,7 +80,6 @@ exports.processTriage = asyncHandler(async (req, res) => {
     });
   }
 
-  // Create medical history if doesn't exist
   const medicalHistory = await MedicalHistory.findOneAndUpdate(
     { patientId: booking.patientId },
     {
@@ -102,7 +97,6 @@ exports.processTriage = asyncHandler(async (req, res) => {
     { new: true, upsert: true }
   );
 
-  // Create appointment
   const appointment = new Appointment({
     bookingId: booking._id,
     patientId: booking.patientId,
@@ -117,7 +111,6 @@ exports.processTriage = asyncHandler(async (req, res) => {
 
   await appointment.save();
 
-  // Update booking status
   booking.status = 'assigned';
   await booking.save();
 
@@ -130,9 +123,6 @@ exports.processTriage = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Update patient medical history (allergies, conditions, etc.)
-// @route   PUT /api/triage/medical-history/:patientId
-// @access  Private/Triage
 exports.updateMedicalHistory = asyncHandler(async (req, res) => {
   const { patientId } = req.params;
   const { allergies, chronicConditions, surgeries, familyHistory, immunizations } = req.body;
