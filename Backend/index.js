@@ -21,3 +21,9 @@ mongoose
   })
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
+
+app.use("/api/auth", authRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/doctor", doctorRoutes);
+app.use("/api/triage", triageRoutes);
+app.use("/api/patient", patientRoutes);
